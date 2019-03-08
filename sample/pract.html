@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title></title>
+        <style type="text/css">
+        h3,submit,button
+        {
+           
+            text-align:center;
+            color:blue;
+            font-size:20px;
+            font-style: italic;
+          
+        }    
+        b,alert
+        {
+            color:blue;
+            font-size: 20px;
+        }   
+        alert
+        {
+            color: blue;
+            font-size: 20px;
+        }
+    </style>
+    </head>
+    <body>
+    <h3>LIST OF EMPLOYEES</h3> 
+
+        <form name="employeeForm" action="http://localhost:3000/todo" onsubmit="return validateForm()" method="post" ><b>NAME</b>
+        <form name="employeeForm" action="http://localhost:3000/todo" onsubmit="return deleteForm()" method="delete" >
+   <input type="text" name="name" value="" placeholder="Enter your name"><br><br>
+   <button >SUBMIT</button>
+   <button>DELETE</button>
+   </form>
+   <button onclick="retrieve()">EMPLOYEE INFO</button><br><br>   
+   <script>
+        function deleteForm()
+         {
+             var y = document.forms["employeeForm"]["name"].value;
+             for(var n=0;n<=obj[i],n++)
+             {
+                 if(y==obj[i].name)
+                 {
+                     alert("Name dleted")
+                 }  
+             }
+         
+
+             
+         }
+         function validateForm() {
+  var x = document.forms["employeeForm"]["name"].value;
+  if (x == "") {
+    alert("PLEASE ENTER A VALID NAME");
+    return false;
+  }
+}
+         
+        function retrieve()
+        {
+            var requestURL = 'http://localhost:3000/users';
+            var request = new XMLHttpRequest();
+            request.open('GET', requestURL);
+            request.responseType = 'json';
+            request.send();
+    
+        request.onload=function()
+        {
+            console.log(request);
+            var yogesh = request.response.data;
+            showdata(yogesh);
+
+        }
+        function showdata(obj)
+        {
+            for(var i=0;i< obj.length;i++)
+            {
+                
+                    var a = document.createElement('p');
+                    var b = document.createElement('b');
+                    var c = document.createElement("span");
+                    b.textContent="Name: ";
+                    a.appendChild(b);
+                    c.textContent = obj[i].name;                
+                    a.appendChild(c);
+                    document.body.appendChild(a);
+                    
+                    
+                
+            }
+        }
+        }
+    </script>
+</body>
+</html>
+
